@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
@@ -46,20 +47,32 @@ public class Main {
 
         }
 
-        static void calc3(){
-        //Из файла b1.txt прочитать список строк и вывести их на экран в обратном порядке
-            String fname3 = "b1.txt";
-            Scanner sc = null;
-            try {
-                sc = new Scanner(new File(fname3));
-            } catch (FileNotFoundException e) {
-                System.out.println("Исключение");
-            }
-            String [] result = new String[6];
-            for (int i = result.length - 1; i >= 0; i--) {
-                result[i] = sc.nextLine();
-                System.out.println(result[i]);
-            }
 
+    static void calc3(){
+        //Прочитать файл b2.txt и вывести из него такие строки, каких нет в файле b1.txt
+        //делаем с помощью списка
+        try {
+            Scanner fileScanner = new Scanner(new File("b1.txt"));
+            Stack<String> lines = new Stack<>();
+
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine();
+                lines.push(line);
+
+            }
+            while (!lines.empty()) {
+                System.out.println(lines.pop());
+            }
+        }catch (FileNotFoundException e) {
+            System.out.println("Файл не найден");
         }
+
+
+    }
+
+    static void calc4(){
+
+
+    }
+
 }
